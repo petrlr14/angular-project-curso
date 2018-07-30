@@ -9,6 +9,7 @@ import { ErrorComponent } from './components/error/error.component';
 
 const appRoutes:Routes=[
     {path:'', component:AboutmeComponent},
+    {path:'about', component:AboutmeComponent},
     {path:'projects', component:ProjectsComponent},
     {path:'create', component:CreateComponent},
     {path: 'contact', component:ContactComponent},
