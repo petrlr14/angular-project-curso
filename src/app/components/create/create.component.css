@@ -1,0 +1,54 @@
+/* form */
+
+.container h2{
+    font-size: 25px;
+    padding-left: 100px;
+}
+
+.material-container{
+    padding: 20px;
+    padding-top: 35px;
+    display: flex;
+    flex-direction: column;
+    margin:0 auto;
+    width: 70%;
+}
+
+#file-upload{
+    display: table;
+}
+
+#upload{
+    justify-content: space-around;
+}
+
+#file-ready{
+    display:table-cell;
+    vertical-align:middle;
+    padding-left: 12px;
+    color:green;
+}
+    
+#create-project{
+    display: flex;
+    margin: 0 auto;
+    margin-top: 35px;
+    margin-bottom: 10px;
+    justify-content: space-around;
+}
+
+.message{
+    margin: 0 auto;
+    padding: 5px;
+    border: 1px solid #eee;
+    width: 50%;
+}
+
+.success, .success a{
+    color: green;
+    text-decoration: none;
+}
+
+.fail, .success a{
+    color: red;
+}

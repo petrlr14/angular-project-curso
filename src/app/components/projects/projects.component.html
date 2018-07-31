@@ -1,3 +1,13 @@
-<p>
-  projects works!
-</p>
+<div class="container">
+  <ul *ngIf="projects">
+    <li *ngFor="let item of projects" class="project">
+      <a [routerLink]="['/project', item._id]"><!-- se debe poner el / para que no tome la ruta actual -->
+        <div class="image">
+          <img *ngIf="item.img" src="{{url+'get-image/'+item.img}}">
+        </div>
+        <h3>{{item.name}}</h3>
+        <p>{{item.category}}</p>
+      </a>
+    </li>
+  </ul>
+</div>

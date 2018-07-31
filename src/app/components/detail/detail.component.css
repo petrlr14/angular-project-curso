@@ -1,0 +1,24 @@
+.container{
+    padding: 50px;
+    padding-top: 10px;
+}
+
+.container .image{
+    float: left;
+    width: 49%;
+}
+
+.container .image img{
+    width: 100%;
+}
+
+.container .data{
+    float: left;
+    width: 40%;
+    margin-left: 35px;
+}
+
+a button{
+    margin-right: 10px; 
+    margin-left: 10px;
+}
