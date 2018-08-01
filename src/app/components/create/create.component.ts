@@ -13,38 +13,41 @@ import { Global } from './../../services/global';
 export class CreateComponent implements OnInit {
 
   public title: string;
-  public newProject: Project;
+  public project: Project;
   public status: string;
   public filesToUpload: Array<File>;
   public url;
-  public fileReady:boolean;
-  public id:string;
+  public fileReady: boolean;
+  public id: string;
+  public messageSuccess: string;
+  public messageFail: string;
+
   constructor(
     /* public snackBar: MatSnackBar */
     private _projectService: ProjectService,
     private _uploadService: UploadService
   ) {
     this.title = 'Create Project';
-    this.newProject = new Project('', '', '', '', 2018, '', '');
-    this.url=Global.url;
-    this.fileReady=false;
+    this.project = new Project('', '', '', '', 2018, '', '');
+    this.url = Global.url;
+    this.fileReady = false;
+    this.messageSuccess = 'creado';
+    this.messageFail = 'crear';
   }
   ngOnInit() {
   }
 
   onSubmit(form) {
-    this._projectService.saveProject(this.newProject).subscribe(response => {
-      if(response.project){
-        console.log(response);
-        
-        this._uploadService.makeFileRequest(this.url+'upload-image/'+response.project._id, [], this.filesToUpload, 'image')
-        .then((result: any) => {
-          console.log(result);
-          this.status = response.project ? 'success' : 'fail';
-          this.fileReady=false;
-          this.id=response.project._id;
-          form.reset();
-        });
+    this._projectService.saveProject(this.project).subscribe(response => {
+      if (response.project) {
+        this._uploadService.makeFileRequest(this.url + 'upload-image/' + response.project._id, [], this.filesToUpload, 'image')
+          .then((result: any) => {
+            console.log(result);
+            this.status = response.project ? 'success' : 'fail';
+            this.fileReady = false;
+            this.id = response.project._id;
+            form.reset();
+          });
       }
     }, error => {
       console.log(<any>error);
@@ -53,7 +56,7 @@ export class CreateComponent implements OnInit {
 
   fileChange(file: any) {
     this.filesToUpload = <Array<File>>file.target.files;/* asi se castea en ts */
-    this.fileReady=true;
+    this.fileReady = true;
   }
 
 }

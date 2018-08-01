@@ -3,13 +3,23 @@
         <img *ngIf="project.img" src="{{url+'get-image/'+project.img}}" width="100px">
     </div>
     <div class="data">
-        <h1>{{project.name}}</h1>
-        <h2>{{project.description}}</h2>
-        <p>{{project.category}}</p>
-        <p>{{project.langs}}</p>
-        <p>
-          <a><button mat-raised-button color="primary">Edit</button></a>
-          <a><button mat-raised-button color="warn" (click)="deleteProject(project._id)">Delete</button></a>
-        </p>
+        <div id="info">
+            <h1>{{project.name}}</h1>
+            <h2>{{project.description}}</h2>
+            <p>{{project.category}}</p>
+            <p>{{project.langs}}</p>
+        </div>
+        <div class="confirmP" *ngIf="!confirm">
+            <a [routerLink]="['/edit', project._id]">
+                <button mat-raised-button color="primary">Edit</button>
+            </a>
+                <button mat-raised-button color="warn" (click)="confirmB()">Delete</button>
+        </div>
+        <div class="confirmP" *ngIf="confirm">
+            Are you sure to delete the project?
+            <br>
+                <button mat-raised-button color="primary" (click)="confirmB()">Cancel</button>
+                <button mat-raised-button color="warn" (click)="deleteProject(project._id)">Sure!</button>
+        </div>
     </div>
 </div>

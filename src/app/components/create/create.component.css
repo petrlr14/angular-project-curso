@@ -18,8 +18,15 @@
     display: table;
 }
 
+#image{
+    display: table-cell;
+}
+
 #upload{
     justify-content: space-around;
+    display:table-cell;
+    vertical-align:middle;
+    padding-left: 10px;
 }
 
 #file-ready{

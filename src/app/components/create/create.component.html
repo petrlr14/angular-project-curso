@@ -2,21 +2,21 @@
   <h2>{{title}}</h2>
   <div class="message success" *ngIf="status=='success'">
     <!--  -->
-    El projecto se ha creado correctamente. Puedes verlo
-    <a [routerLink]="['/project', id]" >aquí</a>
+    El projecto se ha {{messageSuccess}} correctamente. Puedes verlo
+    <a [routerLink]="['/project', id]">aquí</a>
   </div>
   <div class="message fail" *ngIf="status=='fail'">
     <!--  -->
-    El projecto no se ha podido crear
+    El projecto no se ha podido {{messageFail}}
   </div>
-  <form id="form" #projectForm="ngForm" >
-    <div class="material-container">
+  <form id="form" #projectForm="ngForm">
+    <div class="material-container" *ngIf="project">
       <mat-form-field>
-        <input matInput [(ngModel)]="newProject.name" name="name" #name="ngModel" type="text" placeholder="Project name" required>
+        <input matInput [(ngModel)]="project.name" name="name" #name="ngModel" type="text" placeholder="Project name" required>
       </mat-form-field>
 
       <mat-form-field>
-        <mat-select placeholder="Select category" [(ngModel)]="newProject.category" #category="ngModel" name="category" required>
+        <mat-select placeholder="Select category" [(ngModel)]="project.category" #category="ngModel" name="category" required>
           <mat-option value="Web development">Web development</mat-option>
           <mat-option value="Mobile development">Mobile development</mat-option>
           <mat-option value="Desktop development">Desktop development</mat-option>
@@ -24,31 +24,35 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput [(ngModel)]="newProject.year" name="year" #year="ngModel" type="text" placeholder="Creation year" required
-          pattern="([0-9])+">
+        <input matInput [(ngModel)]="project.year" name="year" #year="ngModel" type="text" placeholder="Creation year" required pattern="([0-9])+">
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput [(ngModel)]="newProject.langs" name="langs" #langs="ngModel" type="text" placeholder="Languages used"
-          required>
+        <input matInput [(ngModel)]="project.langs" name="langs" #langs="ngModel" type="text" placeholder="Languages used" required>
       </mat-form-field>
 
       <mat-form-field>
-        <textarea matInput [(ngModel)]="newProject.description" name="description" #description="ngModel" placeholder="Description"
+        <textarea matInput [(ngModel)]="project.description" name="description" #description="ngModel" placeholder="Description"
           required></textarea>
       </mat-form-field>
 
       <div id="file-upload">
-          <button id="upload" mat-raised-button color="primary" (click)="fileInput.click()">
-              <span>Choose file</span>
-              <input #fileInput type="file" (change)="fileChange($event)" style="display:none">
-            </button>
-            <span id="file-ready" *ngIf="fileReady">File ready</span>
+        <div id="image" *ngIf="project.img">
+          <img src="{{url+'get-image/'+project.img}}" width="100px">
+        </div>
+        <div id="upload">
+            <button  mat-raised-button color="primary" (click)="fileInput.click()">
+                <span>Choose file</span>
+                <input #fileInput type="file" (change)="fileChange($event)" style="display:none">
+              </button>
+        </div>
+        <span id="file-ready" *ngIf="fileReady">File ready</span>
       </div>
 
 
     </div>
-    <button id="create-project" mat-raised-button color="primary" [disabled]="!projectForm.form.valid" type="submit" form="form" (click)="onSubmit(projectForm)">Create</button>
+    <button id="create-project" mat-raised-button color="primary" [disabled]="!projectForm.form.valid" type="submit" form="form"
+      (click)="onSubmit(projectForm)">Save</button>
 
   </form>
 </div>

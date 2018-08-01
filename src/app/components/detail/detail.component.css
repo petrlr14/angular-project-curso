@@ -22,3 +22,22 @@ a button{
     margin-right: 10px; 
     margin-left: 10px;
 }
+
+.date{
+    text-align: center;
+}
+
+#info{
+    text-align: center;
+}
+
+.confirmP{
+    padding-top: 20px;
+    color: red;
+}
+
+button{
+    width: 20%;
+    float: left;
+    margin: auto;
+}
